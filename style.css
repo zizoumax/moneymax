@@ -1,106 +1,44 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-body {
-    font-family: 'Poppins', sans-serif;
-    background-color: #f4f4f9;
-    color: #333;
-}
-
-header {
-    background-color: #222;
-    color: #fff;
-    padding: 20px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    position: fixed;
-    width: 100%;
-    top: 0;
-    z-index: 1000;
-}
-
-header .logo h1 {
-    font-weight: 600;
-}
-
-nav ul {
-    list-style-type: none;
-    display: flex;
-}
-
-nav ul li {
-    margin-left: 20px;
-}
-
-nav ul li a {
-    text-decoration: none;
-    color: #fff;
-    font-weight: 400;
-}
-
-.hero {
-    height: 100vh;
-    background: url('https://source.unsplash.com/1600x900/?money') no-repeat center center/cover;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    color: #fff;
-    padding-top: 80px;
-}
-
-.hero-content h2 {
-    font-size: 3rem;
-    margin-bottom: 20px;
-}
-
-.cta-button {
+/* Barre de navigation dynamique */
+header.scrolled {
     background-color: #ff9800;
-    color: #fff;
-    padding: 15px 30px;
-    border: none;
-    border-radius: 25px;
-    font-weight: bold;
-    text-decoration: none;
-    cursor: pointer;
-}
-
-.cta-button:hover {
-    background-color: #e68900;
-}
-
-#features, #packs, #about {
-    padding: 80px 20px;
-    text-align: center;
-}
-
-.features-container, .packs-container {
-    display: flex;
-    justify-content: space-around;
-    flex-wrap: wrap;
-}
-
-.feature, .pack {
-    background-color: #fff;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    border-radius: 10px;
-    padding: 20px;
-    width: 300px;
-    margin: 20px;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
 }
 
-footer {
-    background-color: #222;
-    color: #fff;
-    text-align: center;
-    padding: 20px;
-    position: relative;
+/* Apparition des sections au défilement */
+section {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
 }
 
-footer p {
-    margin-top: 20px;
+section.visible {
+    opacity: 1;
+    transform: translateY(0);
 }
+
+/* Animation des boutons CTA */
+.cta-button.hover {
+    transform: scale(1.1);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* Ajout d'une animation de frappe pour le titre de la page d'accueil */
+.hero-content h2 {
+    border-right: 2px solid #fff;
+    white-space: nowrap;
+    overflow: hidden;
+    width: 0;
+    animation: typing 4s steps(40, end) forwards;
+}
+
+@keyframes typing {
+    from {
+        width: 0;
+    }
+    to {
+        width: 100%;
+    }
+}
+
